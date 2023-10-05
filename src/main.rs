@@ -39,10 +39,7 @@ fn main() {
             continue;
         };
 
-        println!(
-            "Possible system clock: {} Hz",
-            possible_system_clock_freq_hz
-        );
+        println!("Possible system clock: {} Hz", possible_system_clock_freq_hz);
 
         println!("\tVCO Freq = {}kHz, Post Divider 1 = {}, Post Divider 2 = {}, PIO divider = {}, PIO divider fraction = 0", vco_freq.to_kHz(), post_div1, post_div_2, integer_multiplier);
     }
@@ -60,10 +57,7 @@ fn main() {
                 continue;
             };
 
-            println!(
-                "Possible system clock: {} Hz",
-                possible_system_clock_freq_hz
-            );
+            println!("Possible system clock: {} Hz", possible_system_clock_freq_hz);
 
             println!("\tVCO Freq = {}kHz, Post Divider 1 = {}, Post Divider 2 = {}, PIO divider = {}, PIO divider fraction = {}", vco_freq.to_kHz(), post_div1, post_div_2, integer_multiplier, fraction);
         }
