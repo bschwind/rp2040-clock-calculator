@@ -3,7 +3,7 @@ use fugit::{HertzU64, RateExtU64};
 const CRYSTAL_FREQUENCY_KHZ: u64 = 12_000; // 12 MHz
 
 const MIN_SYSTEM_CLOCK_HZ: u64 = 15_428_572;
-const MAX_SYSTEM_CLOCK_HZ: u64 = 133_000_000;
+const MAX_SYSTEM_CLOCK_HZ: u64 = 200_000_000;
 
 // Voltage-Controlled Oscillator constants.
 const PICO_PLL_VCO_MIN_FREQ_KHZ: u64 = 750_000; // 750 MHz
@@ -34,7 +34,9 @@ fn main() {
     for integer_multiplier in (1..=MAX_PIO_INT_DIVIDER).rev() {
         let possible_system_clock_freq_hz = desired_pio_frequency_hz * integer_multiplier;
 
-        let Some((vco_freq, post_div1, post_div_2)) = check_sys_clock(possible_system_clock_freq_hz.Hz()) else {
+        let Some((vco_freq, post_div1, post_div_2)) =
+            check_sys_clock(possible_system_clock_freq_hz.Hz())
+        else {
             // println!("\tNo exact divider found");
             continue;
         };
@@ -52,7 +54,9 @@ fn main() {
             let numerator = 256 * integer_multiplier + fraction;
             let possible_system_clock_freq_hz = (desired_pio_frequency_hz * numerator) / 256;
 
-            let Some((vco_freq, post_div1, post_div_2)) = check_sys_clock(possible_system_clock_freq_hz.Hz()) else {
+            let Some((vco_freq, post_div1, post_div_2)) =
+                check_sys_clock(possible_system_clock_freq_hz.Hz())
+            else {
                 // println!("\tNo exact divider found");
                 continue;
             };
